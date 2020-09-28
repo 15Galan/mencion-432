@@ -1,0 +1,9 @@
+library(linprog)
+#Parametros del problema
+coef <- c(20,30)
+A <- matrix(c(3,1,1,6,0.5,1),ncol=2)
+b <- c(150,22,27.5)
+dir <- rep('<=',3)
+#solucion
+solucion <-solveLP(coef,b, A, maximum = TRUE, dir)
+summary(solucion)

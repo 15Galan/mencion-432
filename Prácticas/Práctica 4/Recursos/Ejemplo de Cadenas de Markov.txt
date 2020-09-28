@@ -1,0 +1,31 @@
+# https://rpubs.com/JanpuHou/326048
+library(markovchain)
+library(diagram)
+# define a transition matrix
+tmA <- matrix(c(0.25,0.65,0.1,.25,0.25,.5,.35,.25,0.4),nrow = 3, byrow = TRUE)
+# create the DTMC
+dtmcA <- new("markovchain",transitionMatrix=tmA, states=c("No Rain","Light Rain","Heavy Rain"), name="MarkovChain A")
+dtmcA
+plot(dtmcA)
+#Visulization by plotmat function from diagram package
+stateNames <- c("No Rain","Light Rain","Heavy Rain")
+row.names(tmA) <- stateNames; colnames(tmA) <- stateNames
+plotmat(tmA,pos = c(1,2),
+        lwd = 1, box.lwd = 2,
+        cex.txt = 0.8,
+        box.size = 0.1,
+        box.type = "circle",
+        box.prop = 0.5,
+        box.col = "light blue",
+        arr.length=.1,
+        arr.width=.1,
+        self.cex = .6,
+        self.shifty = -.01,
+        self.shiftx = .14,
+        main = "Markov Chain")
+# It is possible to simulate states distribution after n-steps
+initialState<-c(0,1,0)
+steps<-2
+finalState<-initialState*dtmcA^steps #using power operator
+finalState
+steadyStates(dtmcA)

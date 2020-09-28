@@ -1,0 +1,5 @@
+library(lpSolve)
+matriz<-matrix(c(3,2,2,3,4,2,2,3,6,4,2,2,8,5,3,4,9,5,3,2), ncol=5)
+solucion<-lp.transport(matriz, direction = "min", rep('=', 4), c(30,80,10,60),rep('=', 5), c(10,50,20,80,20))
+solucion$solution
+solucion$objval

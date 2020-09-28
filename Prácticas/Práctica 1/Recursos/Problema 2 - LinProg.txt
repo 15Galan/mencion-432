@@ -1,0 +1,8 @@
+library(linprog)
+coeficientesFuncionObjetivo<-c(4,6,5,9,8,7,9,4,7,8,7,6)
+coeficientesRestricciones<-matrix(c(1,0,0,0,1,0,0,0,1,0,0,1,0,0,0,0,1,0,1,0,0,0,0,0,1,1,0,0,1,0,0,0,0,1,0,0,1,0,0,0,1,0,0,0,1,0,0,1,0,0,0,0,1,0,1,0,1,0,0,0,0,0,1,0,1,0,0,0,0,1,0,0,1,0,0,0,1,0,0,0,1,0,0,1),ncol = 12)
+b<-c(100,115,80,105,100,200,150)
+operadoresRestricciones<-c(">=",">=",">=",">=","<=","<=","<=")
+solucion<-solveLP(coeficientesFuncionObjetivo, b,coeficientesRestricciones, 0, operadoresRestricciones)
+solucion$solution
+solucion$opt
